@@ -28,9 +28,9 @@
         <section class="relative overflow-hidden rounded-3xl border border-[#6F9F9C]/30 bg-gradient-to-br from-[#6F9F9C] via-[#6F9F9C]/90 to-[#88b8b5] p-8 text-white shadow-xl">
             <div class="relative z-10 flex h-full flex-col justify-between gap-6">
                 <div>
-                    <p class="text-sm uppercase tracking-[0.3em] text-white/70">Lucero Library</p>
+                    <p class="text-sm uppercase tracking-[0.3em] text-white/70">YKNIJ Library</p>
                     <h1 class="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
-                        Curate your collection with confidence.
+                        Create your collection with confidence.
                     </h1>
                     <p class="mt-3 max-w-xl text-white/75">
                         Track books, explore categories, and keep your catalog fresh with a
@@ -91,7 +91,7 @@
                 </label>
                 <label class="space-y-2 text-sm font-medium text-neutral-600 dark:text-neutral-200">
                     Author
-                    <input type="text" name="author" value="{{ old('author') }}" placeholder="e.g. Lucero Navarro" required
+                    <input type="text" name="author" value="{{ old('author') }}" placeholder="e.g. Jinky Salvador" required
                         class="w-full rounded-2xl border border-neutral-200 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition focus:border-[#6F9F9C] focus:ring-2 focus:ring-[#6F9F9C]/30 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100">
                 </label>
                 <label class="space-y-2 text-sm font-medium text-neutral-600 dark:text-neutral-200">

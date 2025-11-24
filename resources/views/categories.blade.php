@@ -28,7 +28,7 @@
         <div class="relative overflow-hidden rounded-3xl border border-[#6F9F9C]/40 bg-white/95 px-8 py-10 shadow-xl backdrop-blur dark:border-neutral-800 dark:bg-neutral-900">
             <div class="relative z-10 max-w-2xl">
                 <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#6F9F9C]">Stacks & Genres</p>
-                <h1 class="mt-4 text-3xl font-semibold text-neutral-900 dark:text-white">Curate your categories</h1>
+                <h1 class="mt-4 text-3xl font-semibold text-neutral-900 dark:text-white">Create your categories</h1>
                 <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-300">
                     Organize your collection with thoughtful genres, curated tags, and descriptions
                     that guide readers through the shelves.
@@ -68,7 +68,7 @@
                 <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#6F9F9C]">New Shelf</p>
                 <h2 class="text-2xl font-semibold text-neutral-900 dark:text-white">Add a Category</h2>
             </div>
-            <span class="rounded-full bg-[#6F9F9C]/15 px-4 py-1 text-xs font-medium text-[#6F9F9C]">Curator tools</span>
+            <span class="rounded-full bg-[#6F9F9C]/15 px-4 py-1 text-xs font-medium text-[#6F9F9C]">Create tools</span>
         </div>
 
         <form action="{{ route('categories.store') }}" method="POST" class="mt-6 space-y-5">

@@ -1,1 +1,1 @@
-<img src="{{ asset('images/library.jpg') }}" alt=""class="rounded">
+<img src="{{ asset('images/library.jpg') }}" alt=""class="h-13 w-auto">
