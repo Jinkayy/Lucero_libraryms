@@ -2,7 +2,7 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 
     @if(session('success'))
-        <div class="rounded-lg bg-green-100 p-4 text-green-700 dark:bg-green-900/30 dark:text-green-300">
+        <div class="rounded-lg bg-green-100 p-4 text-cyan-700 dark:bg-green-900/30 dark:text-cyan-300">
             {{ session('success') }}
         </div>
     @endif
