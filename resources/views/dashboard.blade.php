@@ -2,13 +2,37 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 
     @if(session('success'))
-        <div class="rounded-lg bg-green-100 p-4 text-cyan-700 dark:bg-green-900/30 dark:text-cyan-300">
+        <div class="rounded-lg bg-green-100 p-4 text-green-700 dark:bg-green-900/30 dark:text-green-300">
             {{ session('success') }}
         </div>
     @endif
 
     <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800">
         <div class="flex h-full flex-col p-6">
+
+            {{-- *START: ADDED DASHBOARD CARDS* --}}
+            <div class="mb-6 grid gap-4 md:grid-cols-3">
+                
+                {{-- Card 1: Total Books --}}
+                <div class="rounded-xl border border-blue-200 bg-blue-50 p-4 shadow dark:border-blue-900 dark:bg-blue-900/30">
+                    <p class="text-sm font-medium text-blue-700 dark:text-blue-300">Total Books</p>
+                    <p class="mt-1 text-3xl font-bold text-neutral-900 dark:text-white">{{ $totalBooks }}</p>
+                </div>
+
+                {{-- Card 2: Total Categories --}}
+                <div class="rounded-xl border border-green-200 bg-green-50 p-4 shadow dark:border-green-900 dark:bg-green-900/30">
+                    <p class="text-sm font-medium text-green-700 dark:text-green-300">Total Categories</p>
+                    <p class="mt-1 text-3xl font-bold text-neutral-900 dark:text-white">{{ $totalCategories }}</p>
+                </div>
+
+                {{-- Card 3: Latest Book Added --}}
+                <div class="rounded-xl border border-yellow-200 bg-yellow-50 p-4 shadow dark:border-yellow-900 dark:bg-yellow-900/30">
+                    <p class="text-sm font-medium text-yellow-700 dark:text-yellow-300">Latest Book</p>
+                    <p class="mt-1 text-lg font-bold text-neutral-900 dark:text-white">{{ $latestBook->title ?? 'N/A' }}</p>
+                    <p class="text-xs text-yellow-600 dark:text-yellow-400">By {{ $latestBook->author ?? 'Unknown' }}</p>
+                </div>
+            </div>
+            {{-- *END: ADDED DASHBOARD CARDS* --}}
 
             <div class="mb-6 rounded-lg border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-700 dark:bg-neutral-900/50">
                 <h2 class="mb-4 text-lg font-semibold text-neutral-900 dark:text-neutral-100">Add New Book</h2>
@@ -20,13 +44,13 @@
                         <div>
                             <label class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">Title</label>
                             <input type="text" name="title" value="{{ old('title') }}" placeholder="Enter book title" required
-                                   class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-100">
+                                        class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-100">
                         </div>
 
                         <div>
                             <label class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">Author</label>
                             <input type="text" name="author" value="{{ old('author') }}" placeholder="Enter author name" required
-                                   class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-100">
+                                        class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-100">
                         </div>
 
                         <div>
@@ -79,13 +103,13 @@
                                 <td class="px-4 py-3 text-sm">{{ Str::limit($book->description, 60) }}</td>
 
                                 <td class="px-4 py-3 text-center text-sm">
-                                    {{-- **EDIT BUTTON START** --}}
+                                    {{-- *EDIT BUTTON START* --}}
                                     <button onclick="editBook({{ $book->id }}, '{{ $book->title }}', '{{ $book->author }}', {{ $book->category_id }}, '{{ $book->description }}')"
-                                             class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                                            class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
                                         Edit
                                     </button>
                                     <span class="mx-1 text-neutral-400">|</span>
-                                    {{-- **EDIT BUTTON END** --}}
+                                    {{-- *EDIT BUTTON END* --}}
 
                                     <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('Delete this book?')" class="inline">
                                         @csrf
@@ -109,7 +133,7 @@
     </div>
 </div>
 
-{{-- **EDIT BOOK MODAL START** --}}
+{{-- *EDIT BOOK MODAL START* --}}
 <div id="editBookModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
     <div class="w-full max-w-2xl rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
         <h2 class="mb-4 text-lg font-semibold text-neutral-900 dark:text-neutral-100">Edit Book</h2>
@@ -164,10 +188,10 @@
         </form>
     </div>
 </div>
-{{-- **EDIT BOOK MODAL END** --}}
+{{-- *EDIT BOOK MODAL END* --}}
 
 <script>
-    // **NEW JAVASCRIPT FUNCTIONS**
+    // *NEW JAVASCRIPT FUNCTIONS*
 
     function editBook(id, title, author, categoryId, description) {
         // Show the modal
@@ -177,7 +201,7 @@
 
         // Set the form action URL to the update route (e.g., /books/1)
         const form = document.getElementById('editBookForm');
-        form.action = `/books/${id}`; // Adjust this route if your book update route is different
+        form.action = /books/${id}; // Adjust this route if your book update route is different
 
         // Populate the form fields
         document.getElementById('edit_title').value = title;

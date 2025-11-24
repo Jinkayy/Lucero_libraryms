@@ -11,18 +11,23 @@ class BookController extends Controller
 {
     public function index()
     {
-        // Load books with categories
+        // 1. Fetch data for the main table/form
         $books = Book::with('category')->get();
         $categories = Category::all();
 
-        return view('dashboard', compact('books', 'categories'));
+        // 2. Fetch data for the new dashboard cards
+        $totalBooks = Book::count();
+        $totalCategories = Category::count();
+        $latestBook = Book::latest()->first(); // Gets the most recently created book
+
+        return view('dashboard', compact('books', 'categories', 'totalBooks', 'totalCategories', 'latestBook'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',  // ✅ added
+            'author' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => [
                 'nullable',
@@ -31,7 +36,6 @@ class BookController extends Controller
             ],
         ]);
 
-        // ✅ Save title + author + description + category_id
         Book::create($request->only('title', 'author', 'description', 'category_id'));
 
         return redirect()->back()->with('success', 'Book added successfully!');
@@ -41,7 +45,7 @@ class BookController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255', // ✅ added
+            'author' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => [
                 'nullable',
@@ -50,7 +54,6 @@ class BookController extends Controller
             ],
         ]);
 
-        // ✅ Update all fields
         $book->update($request->only('title', 'author', 'description', 'category_id'));
 
         return redirect()->back()->with('success', 'Book updated successfully!');
